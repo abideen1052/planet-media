@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     height: CARD_WIDTH,
     overflow: 'hidden',
-    marginBottom: 16,
+    marginVertical: 6,
     // Shadow for iOS
     shadowColor: '#000',
     shadowOffset: {
@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
     // Shadow for Android
-    elevation: 5,
+    elevation: 3,
   },
   image: {
     width: '100%',

@@ -3,6 +3,7 @@ import React from 'react';
 import { styles } from './styles';
 import SvgImage from '../../utils/svgImage';
 import { HeaderProp } from '../../types/headerProp';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const HeaderSection = ({
   leftIcon,
@@ -10,8 +11,10 @@ const HeaderSection = ({
   leftIconPress,
   rightIconPress,
 }: HeaderProp) => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.headerContainer}>
+    <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
       <Pressable onPress={leftIconPress}>
         {leftIcon && <SvgImage icon={leftIcon} height={24} width={24} />}
       </Pressable>

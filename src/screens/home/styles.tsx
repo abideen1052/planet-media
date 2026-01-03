@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 14,
+    backgroundColor: colors.white,
+  },
+  scrollContainer: {
+    flex: 1,
   },
   offerBanner: {
     width: width - 28,

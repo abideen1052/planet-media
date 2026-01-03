@@ -1,9 +1,8 @@
-import { FlatList, StatusBar, Text, View } from 'react-native';
+import { FlatList, ScrollView, StatusBar, Text, View } from 'react-native';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { styles } from './styles';
 import colors from '../../themes/color';
 import ListItem from '../../components/listItem';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ProductType } from '../../types/listItemTypes';
 import FastImage from 'react-native-fast-image';
@@ -28,7 +27,7 @@ const createPages = (productList: ProductType[]): ProductType[][] => {
 };
 
 const HomeScreen = () => {
-  const { data, isLoading, makeRequest } = useFetch();
+  const { data, isLoading, error, makeRequest } = useFetch();
 
   useEffect(() => {
     makeRequest({
@@ -65,11 +64,11 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
-        <HeaderSection leftIcon="backArrow" rightIcon="notification" />
+      <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
+      <HeaderSection leftIcon="backArrow" rightIcon="notification" />
+      <ScrollView style={styles.scrollContainer}>
         <FastImage source={images.offerBanner} style={styles.offerBanner} />
-        {isLoading ? (
+        {isLoading || (!data && !error) ? (
           <ListingShimmer />
         ) : (
           <FlatList
@@ -86,7 +85,7 @@ const HomeScreen = () => {
             ListEmptyComponent={renderEmpty}
           />
         )}
-      </SafeAreaView>
+      </ScrollView>
     </View>
   );
 };
