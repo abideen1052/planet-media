@@ -1,5 +1,8 @@
-export type ListItemType = {
-  imageUri: string;
-  name: string;
-  price: number;
+export type ProductType = {
+  id: number;
+  product_name: string;
+  amount: number;
+  image: string;
 };
+
+export type ListItemType = ProductType;

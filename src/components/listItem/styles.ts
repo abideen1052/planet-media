@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../themes/color';
 const { width } = Dimensions.get('window');
-const CARD_WIDTH = (width - 48) / 2;
+const CARD_WIDTH = (width - 50) / 2;
 
 export const styles = StyleSheet.create({
   itemContainer: {
@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     color: colors.white,
+    maxWidth: '73%',
   },
   price: {
     fontSize: 12,

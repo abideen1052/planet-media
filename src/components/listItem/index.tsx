@@ -14,14 +14,16 @@ const ListItem = ({ item }: Props) => {
       <FastImage
         style={styles.image}
         source={{
-          uri: item?.imageUri,
+          uri: item?.image,
         }}
         resizeMode={FastImage.resizeMode.contain}
       />
       <View style={styles.infoContainer}>
-        <Text style={styles.itemName}>{item?.name}</Text>
+        <Text numberOfLines={1} style={styles.itemName}>
+          {item?.product_name}
+        </Text>
         <Text style={styles.price}>
-          {item?.price ? `₹ ${item.price.toFixed(2)}` : ''}
+          {item?.amount ? `₹ ${item.amount.toFixed(2)}` : ''}
         </Text>
       </View>
     </View>
