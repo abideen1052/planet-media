@@ -1,1 +1,7 @@
-export type IconsType = 'home' | 'gallery' | 'share' | 'profile';
+export type IconsType =
+  | 'home'
+  | 'gallery'
+  | 'share'
+  | 'profile'
+  | 'backArrow'
+  | 'notification';

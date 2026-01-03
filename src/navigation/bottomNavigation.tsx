@@ -15,12 +15,20 @@ export default function BottomNavigation() {
       screenOptions={({ route }) => ({
         tabBarIcon: () => <TabBarIcon routeName={route.name} />,
         headerShown: false,
-        tabBarInactiveTintColor: colors.white,
-        tabBarActiveTintColor: colors.white,
+        tabBarShowLabel: false,
         tabBarStyle: {
-          height: 60,
+          height: 50,
           backgroundColor: colors.primary,
         },
+        tabBarItemStyle: {
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        tabBarIconStyle: {
+          marginTop: 5,
+        },
+        tabBarActiveTintColor: colors.white,
+        tabBarInactiveTintColor: colors.white,
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />

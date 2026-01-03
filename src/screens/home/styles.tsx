@@ -7,6 +7,13 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 14,
   },
+  offerBanner: {
+    width: width - 28,
+    height: 150,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 14,
+  },
   page: {
     width: width - 28,
     flexDirection: 'row',

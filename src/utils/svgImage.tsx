@@ -1,21 +1,30 @@
 import { SvgXml } from 'react-native-svg';
 
-import { home, gallery, share, profile } from '../resources/svg';
+import {
+  home,
+  gallery,
+  share,
+  profile,
+  backArrow,
+  notification,
+} from '../resources/svg';
 import { IconsType } from '../types/iconsType';
 
 export const IMAGES = {
-    home,
-    gallery,
-    share,
-    profile
+  home,
+  gallery,
+  share,
+  profile,
+  backArrow,
+  notification,
 };
 
-  type Props = {
-  icon: IconsType,
-  width?: number,
-  height?: number,
-  color?: string,
-  style?: any,
+type Props = {
+  icon: IconsType;
+  width?: number;
+  height?: number;
+  color?: string;
+  style?: any;
 };
 
 const SvgImage = (props: Props) => {
@@ -30,4 +39,3 @@ const SvgImage = (props: Props) => {
 };
 
 export default SvgImage;
-
