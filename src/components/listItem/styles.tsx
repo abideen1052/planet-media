@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: CARD_WIDTH - 40,
+    borderRadius: 20,
   },
   infoContainer: {
     height: 40,
@@ -44,5 +45,11 @@ export const styles = StyleSheet.create({
   price: {
     fontSize: 12,
     color: colors.white,
+  },
+  loaderContainer: {
+    ...StyleSheet.absoluteFill,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
   },
 });

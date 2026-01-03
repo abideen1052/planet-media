@@ -1,4 +1,11 @@
-import { FlatList, ScrollView, StatusBar, Text, View } from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  ScrollView,
+  StatusBar,
+  Text,
+  View,
+} from 'react-native';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { styles } from './styles';
 import colors from '../../themes/color';
@@ -11,6 +18,9 @@ import HeaderSection from '../../components/headerSection';
 import { useFetch } from '../../utils/hooks/useFetch';
 import { apiEndpoints } from '../../api/config';
 import { ListingShimmer } from '../../components/shimmer';
+
+const { width } = Dimensions.get('window');
+const PAGE_WIDTH = width - 28;
 
 const createPages = (productList: ProductType[]): ProductType[][] => {
   const pages: ProductType[][] = [];
@@ -42,6 +52,15 @@ const HomeScreen = () => {
     }
     return [];
   }, [data]);
+
+  const getItemLayout = useCallback(
+    (_: any, index: number) => ({
+      length: PAGE_WIDTH,
+      offset: PAGE_WIDTH * index,
+      index,
+    }),
+    [],
+  );
 
   const renderItem = useCallback(
     ({ item }: { item: ProductType[] }) => (
@@ -78,10 +97,12 @@ const HomeScreen = () => {
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             renderItem={renderItem}
+            getItemLayout={getItemLayout}
             initialNumToRender={1}
             maxToRenderPerBatch={1}
             windowSize={3}
             removeClippedSubviews={true}
+            decelerationRate="fast"
             ListEmptyComponent={renderEmpty}
           />
         )}

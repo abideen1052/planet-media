@@ -14,10 +14,10 @@ export const styles = StyleSheet.create({
   },
   offerBanner: {
     width: width - 28,
-    height: 150,
+    height: 160,
     borderRadius: 12,
     overflow: 'hidden',
-    marginBottom: 14,
+    marginBottom: 8,
   },
   page: {
     width: width - 28,
