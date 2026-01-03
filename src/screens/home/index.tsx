@@ -1,18 +1,22 @@
-import { FlatList, StatusBar, View } from 'react-native';
-import React, { useCallback, useMemo } from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  StatusBar,
+  Text,
+  View,
+} from 'react-native';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { styles } from './styles';
 import colors from '../../themes/color';
 import ListItem from '../../components/listItem';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { apiData } from '../../utils/data';
-
 import { ProductType } from '../../types/listItemTypes';
 import FastImage from 'react-native-fast-image';
 import images from '../../themes/images';
 import HeaderSection from '../../components/headerSection';
-
-const products: ProductType[] = apiData.data.products;
+import { useFetch } from '../../utils/hooks/useFetch';
+import { apiEndpoints } from '../../api/config';
 
 const createPages = (productList: ProductType[]): ProductType[][] => {
   const pages: ProductType[][] = [];
@@ -29,7 +33,21 @@ const createPages = (productList: ProductType[]): ProductType[][] => {
 };
 
 const HomeScreen = () => {
-  const pages = useMemo(() => createPages(products), []);
+  const { data, isLoading, makeRequest } = useFetch();
+
+  useEffect(() => {
+    makeRequest({
+      endPoint: apiEndpoints.getItems,
+      method: 'GET',
+    });
+  }, [makeRequest]);
+
+  const pages = useMemo(() => {
+    if (data?.data?.products) {
+      return createPages(data.data.products);
+    }
+    return [];
+  }, [data]);
 
   const renderItem = useCallback(
     ({ item }: { item: ProductType[] }) => (
@@ -41,6 +59,22 @@ const HomeScreen = () => {
     ),
     [],
   );
+  const renderEmpty = useCallback(
+    () => (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>No Data Found</Text>
+      </View>
+    ),
+    [],
+  );
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -59,6 +93,7 @@ const HomeScreen = () => {
           maxToRenderPerBatch={1}
           windowSize={3}
           removeClippedSubviews={true}
+          ListEmptyComponent={renderEmpty}
         />
       </SafeAreaView>
     </View>

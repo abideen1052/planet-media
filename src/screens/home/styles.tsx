@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import colors from '../../themes/color';
 
 const width = Dimensions.get('window').width;
 
@@ -19,5 +20,21 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'pink',
+  },
+  emptyText: {
+    fontSize: 16,
+    color: colors.black,
+    textAlign: 'center',
   },
 });
