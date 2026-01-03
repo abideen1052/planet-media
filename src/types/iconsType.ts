@@ -4,4 +4,9 @@ export type IconsType =
   | 'share'
   | 'profile'
   | 'backArrow'
-  | 'notification';
+  | 'notification'
+  | 'hamburger'
+  | 'cart'
+  | 'exchange'
+  | 'offer'
+  | 'coupons';

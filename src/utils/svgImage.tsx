@@ -7,6 +7,11 @@ import {
   profile,
   backArrow,
   notification,
+  hamburger,
+  cart,
+  exchange,
+  offer,
+  coupons,
 } from '../resources/svg';
 import { IconsType } from '../types/iconsType';
 
@@ -17,6 +22,11 @@ export const IMAGES = {
   profile,
   backArrow,
   notification,
+  hamburger,
+  cart,
+  exchange,
+  offer,
+  coupons,
 };
 
 type Props = {
