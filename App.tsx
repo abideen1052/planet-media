@@ -1,29 +1,21 @@
-import { StatusBar, StyleSheet, View, Text } from 'react-native';
-import {
-  SafeAreaProvider,
-  
-} from 'react-native-safe-area-context';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import AppNavigator from './src/navigation';
 
 function App() {
-  
-
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={ 'dark-content'} backgroundColor="#fff"/>
-      <View style={styles.container}>
-        <Text>App</Text>
-      </View>
+      <SafeAreaView style={styles.container} edges={['bottom']}>
+        <AppNavigator />
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
