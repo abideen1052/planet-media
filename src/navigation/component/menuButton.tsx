@@ -23,7 +23,7 @@ const Option = ({
 }) => {
   const animatedStyle = useAnimatedStyle(() => {
     const angles = [-140, -110, -70, -40];
-    const radius = 80;
+    const radius = 90;
     const angle = angles[index];
 
     const radian = (angle * Math.PI) / 180;
@@ -57,9 +57,11 @@ const Option = ({
 
 export const MenuButton = () => {
   const isExpanded = useSharedValue(0);
+  const isOpen = useSharedValue(false);
 
   const toggleMenu = () => {
-    isExpanded.value = isExpanded.value === 0 ? withSpring(1) : withSpring(0);
+    isOpen.value = !isOpen.value;
+    isExpanded.value = isOpen.value ? withSpring(1) : withSpring(0);
   };
 
   return (
@@ -121,9 +123,9 @@ const styles = StyleSheet.create({
   },
   option: {
     position: 'absolute',
-    width: 35,
-    height: 35,
-    borderRadius: 17.5,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
