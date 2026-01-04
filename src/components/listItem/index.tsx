@@ -52,7 +52,9 @@ const ListItem = ({ item }: Props) => {
           {item?.product_name}
         </Text>
         <Text style={styles.price}>
-          {item?.amount ? `₹ ${item.amount.toFixed(2)}` : ''}
+          {typeof item?.amount === 'number'
+            ? `₹ ${item.amount.toFixed(2)}`
+            : ''}
         </Text>
       </View>
     </View>

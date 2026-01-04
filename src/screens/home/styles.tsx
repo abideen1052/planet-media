@@ -32,13 +32,40 @@ export const styles = StyleSheet.create({
   },
   emptyContainer: {
     flex: 1,
+    width: width - 28,
+    paddingVertical: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'pink',
   },
   emptyText: {
     fontSize: 16,
     color: colors.black,
+    fontWeight: 'bold',
     textAlign: 'center',
+    alignSelf: 'center',
+  },
+  errorContainer: {
+    flex: 1,
+    paddingVertical: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    fontSize: 16,
+    color: colors.red,
+    textAlign: 'center',
+    marginBottom: 16,
+    alignSelf: 'center',
+  },
+  retryButton: {
+    paddingHorizontal: 24,
+    paddingVertical: 10,
+    backgroundColor: colors.primary,
+    borderRadius: 8,
+  },
+  retryText: {
+    color: colors.white,
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });

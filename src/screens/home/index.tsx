@@ -4,6 +4,7 @@ import {
   ScrollView,
   StatusBar,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React, { useCallback, useEffect, useMemo } from 'react';
@@ -23,10 +24,15 @@ const { width } = Dimensions.get('window');
 const PAGE_WIDTH = width - 28;
 
 const createPages = (productList: ProductType[]): ProductType[][] => {
+  if (!productList || productList.length === 0) {
+    return [];
+  }
   const pages: ProductType[][] = [];
 
+  // Initial load shows 6 items
   pages.push(productList.slice(0, 6));
 
+  // Subsequent swipes load sets of 5 items
   let index = 6;
   while (index < productList.length) {
     pages.push(productList.slice(index, index + 5));
@@ -39,12 +45,16 @@ const createPages = (productList: ProductType[]): ProductType[][] => {
 const HomeScreen = () => {
   const { data, isLoading, error, makeRequest } = useFetch();
 
-  useEffect(() => {
+  const handleFetchData = useCallback(() => {
     makeRequest({
       endPoint: apiEndpoints.getItems,
       method: 'GET',
     });
   }, [makeRequest]);
+
+  useEffect(() => {
+    handleFetchData();
+  }, [handleFetchData]);
 
   const pages = useMemo(() => {
     if (data?.data?.products) {
@@ -89,6 +99,18 @@ const HomeScreen = () => {
         <FastImage source={images.offerBanner} style={styles.offerBanner} />
         {isLoading || (!data && !error) ? (
           <ListingShimmer />
+        ) : error ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>
+              {error?.message || 'Something went wrong'}
+            </Text>
+            <TouchableOpacity
+              style={styles.retryButton}
+              onPress={handleFetchData}
+            >
+              <Text style={styles.retryText}>Retry</Text>
+            </TouchableOpacity>
+          </View>
         ) : (
           <FlatList
             data={pages}
